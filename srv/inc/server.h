@@ -2,7 +2,6 @@
  * Fichero de cabecer del servidor
  *  Este fichero contiene todos las librerías necesarias para la ejecución del servidor.
  *  Este fichero contiene todas las definiciones necesarias para la ejecución del servidor.
- *  Este fichero contiene la estructura de datos del servidor.
  * 
  * @author Antonio Carretero Sahuquillo
 */

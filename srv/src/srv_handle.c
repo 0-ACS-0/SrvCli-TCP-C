@@ -5,7 +5,6 @@
  * @author Antonio Carretero Sahuquillo
 */
 
-#include "server.h"
 #include "srv_handle.h"
 
 /* Funciones */

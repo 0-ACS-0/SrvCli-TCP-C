@@ -8,6 +8,8 @@
 #ifndef SRV_HANDLE
 #define SRV_HANDLE
 
+#include "server.h"
+
 /* Estructura de datos del servidor */
 struct servidor_t{
     
