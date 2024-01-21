@@ -1,6 +1,8 @@
 /**
  * Fichero de cabecera de la implementación de la "Shell" del servidor.
  *  Contiene únicamente los prototipos de las funciones.
+ * 
+ * @author Antonio Carretero Sahuquillo
 */
 
 #ifndef SRV_SHELL 

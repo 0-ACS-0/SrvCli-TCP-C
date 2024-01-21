@@ -26,18 +26,15 @@ void server_loop(struct servidor_t * serv)
         //Aceptación de la conexión entrante
         if ((serv->client_socket = accept(serv->server_fd, (struct sockaddr *)&serv->client_address, (socklen_t*)&serv->addrlen)) < 0)
         {
-            perror("[SERVIDOR-ERR]: Error al aceptar la conexión con el cliente.");
             srv_log("[SERVIDOR-ERR]: Error al aceptar la conexión con el cliente.");
             exit(EXIT_FAILURE);
         }
 
-        printf("[SERVIDOR]: Conexión aceptada.\n");
         srv_log("[SERVIDOR]: Conexión aceptada.");
 
         //Creación de un hilo para el manejo del cliente.
         if (pthread_create(&serv->thread_id, NULL, handle_client, (void *)&serv->client_socket) < 0)
         {
-            perror("[SERVIDOR-ERR]: Error en la creación del hilo para el manejo del cliente.");
             srv_log("[SERVIDOR-ERR]: Error en la creación del hilo para el manejo del cliente.");
             exit(EXIT_FAILURE);
         }

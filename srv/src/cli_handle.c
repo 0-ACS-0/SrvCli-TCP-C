@@ -5,8 +5,11 @@
  * @author Antonio Carretero Sahuquillo
 */
 
-#include "server.h"
 #include "cli_handle.h"
+
+/* Prototipos para las funciones "ocultas" */
+static void * srv_tx(void * arg);
+static void * srv_rx(void * arg);
 
 /* Funciones */
 
@@ -18,22 +21,62 @@
 */
 void *handle_client(void *arg)
 {
-    // Variables locales del cliente.
-    int client_socket = *((int *)arg);      //Socket del cliente.
-    char buffer[BUFFER_SIZE];               //Tamaño del buffer.
-    ssize_t read_bytes;                     //Bytes leídos del cliente.
+    // Inicialización de la estructura del cliente conectado.
+    struct cliente_t cli;
+    cli.client_socket = *((int *)arg);
+
 
     // Manejo de la comunicación con el cliente.
-    while ((read_bytes = recv(client_socket, buffer, sizeof(buffer), 0)) > 0)
-    {
-        // PROCESAR LA SOLICITUD DEL CLIENTE //
-            //En este caso solo se reenvía la misma información que envía el cliente.
-        send(client_socket, buffer, read_bytes, 0);
-    }
+
 
     // Cierre del socket del cliente.
-    close(client_socket);
+    close(cli.client_socket);
 
     //Finalización del hilo del cliente.
+    pthread_exit(NULL);
+}
+
+/* Funciones "ocultas" */
+
+/**
+ * @brief Hilo de transmisión servidor-->cliente, de la conexión realizada.
+ * @param void * arg: Estructura para el manejo de los datos del cliente.
+ * 
+ * @retval none
+*/
+static void * srv_tx(void * arg)
+{
+    //Estructura del cliente
+    struct cliente_t cli = *((struct cliente_t *)arg);
+
+    //Bucle infinito de transmisión
+    while(1)
+    {
+        //send(cli.client_socket, cli.msg_tx, sizeof(cli.msg_tx), 0);
+    }
+
+    //Finalización del hilo
+    pthread_exit(NULL);
+}
+
+/**
+ * @brief Hilo de recepción servidor<--cliente, de la conexión realizada.
+ * @param void * arg: Estructura para el manejo de los datos del cliente.
+ * 
+ * @retval none
+*/
+static void * srv_rx(void * arg)
+{
+    //Estructura del cliente
+    struct cliente_t cli = *((struct cliente_t *)arg);
+
+    //Bucle infinito de recepción.
+    while(1)
+    {
+        //Lectura y almacenamiento de datos recividos por el cliente.
+        while((cli.read_bytes = recv(cli.client_socket, cli.msg_rx, sizeof(cli.msg_rx), 0)) > 0);
+    }
+
+    //Finalización del hilo
     pthread_exit(NULL);
 }

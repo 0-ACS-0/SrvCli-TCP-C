@@ -1,6 +1,8 @@
 /**
  * Implementación de la shell del servidor.
  *  Incluye todo tipo de funcionalidad para comprobar el estado del servidor.
+ * 
+ * @author Antonio Carretero Sahuquillo
 */
 
 #include "server.h"
@@ -40,7 +42,7 @@ void srv_init_shell()
 
 /**
  * @brief Implementacioón de la shell del servidor.
- * @param none
+ * @param void * running: Condición de finalización del servidor.
  * 
  * @retval none
 */
@@ -51,14 +53,19 @@ static void * srv_shell()
     //Bucle infinito de la shell
     while(1)
     {
+        //Prompt y lectura del comando.
+        srv_prompt(cmd);
+
         //Opción <exit>
         if (!strcmp(cmd, "exit"))
         {
+            raise(SIGUSR1);     //Señal de salida del servidor.
+            
             pthread_exit(NULL);
             exit(EXIT_SUCCESS);
         }
 
-        srv_prompt(cmd);
+        //Intérprete del comando (realiza la acción).
         srv_interpreter(cmd);
     }
 
@@ -93,7 +100,7 @@ static void srv_interpreter(char * cmd)
     if(!strcmp(cmd, "help"))
     {
         printf("\n______________________________________________________\n");
-        printf("\n Por el momento esta shell está en desarrollo, por \n lo que cualquier comando introducido\n será devuelto a la consola. \n\n Lista de comandos implementados: \n\t <exit>: Finaliza la shell.\n\n");
+        printf("\n Por el momento esta shell está en desarrollo, por \n lo que cualquier comando introducido\n será devuelto a la consola. \n\n Lista de comandos implementados: \n\t <exit>: Finaliza la ejecución del servidor.\n\n");
         printf("\n______________________________________________________\n");
     }
 

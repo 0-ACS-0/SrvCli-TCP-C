@@ -1,6 +1,8 @@
 /**
  * Fichero de cabecer de el almacenamiento de los logs del servidor
  *  Contiene únicamente los prototipos de las funciones.
+ * 
+ * @author Antonio Carretero Sahuquillo
 */
 
 #ifndef SRV_LOG 

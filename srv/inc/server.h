@@ -16,7 +16,9 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+
 #include <pthread.h>
+#include <signal.h>
 
 #include "cli_handle.h"     //Librerías del proyecto
 #include "srv_handle.h"     

@@ -1,5 +1,7 @@
 /**
  * Implementación de ficheros lod del servidor.
+ * 
+ * @author Antonio Carretero Sahuquillo
  *  
 */
 
