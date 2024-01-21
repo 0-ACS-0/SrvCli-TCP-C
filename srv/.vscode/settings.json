@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "server.h": "c",
+        "srv_handle.h": "c"
+    }
+}
