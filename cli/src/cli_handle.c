@@ -8,6 +8,13 @@
 #include "cli_handle.h"
 
 /* Funciones */
+
+/**
+ * @brief Función que controla el comprotamiento del cliente, una vez realizada la conexión.
+ * @param struct cliente_t * cli: Estructura que contiene toda la información de la conexińo del cliente.
+ * 
+ * @retval None
+*/
 void env_rcv(struct cliente_t * cli)
 {
     //Envío de datos al servidor.

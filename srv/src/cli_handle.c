@@ -9,6 +9,13 @@
 #include "cli_handle.h"
 
 /* Funciones */
+
+/**
+ * @brief Función que maneja la interacción con el cliente, una vez realizada la conexión.
+ * @param void *arg: Descriptor de archvio del cliente recién conectado.
+ * 
+ * @retval None
+*/
 void *handle_client(void *arg)
 {
     // Variables locales del cliente.

@@ -17,6 +17,7 @@ int main()
     if ((serv.server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         perror("[SERVIDOR-ERR]: Fallo en la creación del socket.");
+        srv_log("[SERVIDOR-ERR]: Fallo en la creación del socket.");
         exit(EXIT_FAILURE);
     }
 
@@ -29,6 +30,7 @@ int main()
     if (bind(serv.server_fd, (struct sockaddr *)&serv.server_address, sizeof(serv.server_address)) < 0)
     {
         perror("[SERVIDOR-ERR]: Fallo en la vinculación del socket.");
+        srv_log("[SERVIDOR-ERR]: Fallo en la vinculación del socket.");
         exit(EXIT_FAILURE);
     } 
 
@@ -36,10 +38,12 @@ int main()
     if(listen(serv.server_fd, 3) < 0)
     {
         perror("[SERVIDOR-ERR]: Error en la escucha del socket.");
+        srv_log("[SERVIDOR-ERR]: Error en la escucha del socket.");
         exit(EXIT_FAILURE);
     }
 
     printf("[SERVIDOR]: Servidor TCP esperando conexiones en el puerto %d...\n", PORT);
+    srv_log("[SERVIDOR]: Servidor TCP esperando conexiones...");
 
     /* Bucle de funcionalidad del servidor*/
     server_loop(&serv);

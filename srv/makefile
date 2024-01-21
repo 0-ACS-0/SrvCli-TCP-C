@@ -10,13 +10,13 @@ CFLAGS = -Wall -I $(INCD)
 TRG = server
 
 SRCD = src/
-SRC = $(SRCD)server.c $(SRCD)srv_handle.c $(SRCD)cli_handle.c
+SRC = $(SRCD)server.c $(SRCD)srv_handle.c $(SRCD)srv_shell.c $(SRCD)srv_log.c $(SRCD)cli_handle.c
 
 INCD = inc/
-INC = $(INCD)server.h $(INCD)srv_handle.h $(INCD)cli_handle.h
+INC = $(INCD)server.h $(INCD)srv_handle.h $(INCD)srv_shell.h $(INCD)srv_log.h $(INCD)cli_handle.h
 
 OBJD = obj/
-OBJ = $(OBJD)server.o $(OBJD)srv_handle.o $(OBJD)cli_handle.o
+OBJ = $(OBJD)server.o $(OBJD)srv_handle.o $(OBJD)srv_shell.o $(OBJD)srv_log.o $(OBJD)cli_handle.o
 
 BIND = bin/
 
